@@ -8,9 +8,10 @@ datasource db {
 }
 
 model brands {
-  id       Int     @id
-  name     String? @db.VarChar(255)
-  logo_url String? @db.VarChar(255)
+  id          String  @id @db.VarChar(36)
+  name        String? @db.VarChar(255)
+  logo_url    String? @db.VarChar(255)
+  description String? @db.Text
 }
 
 model products {

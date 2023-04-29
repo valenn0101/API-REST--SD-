@@ -1,0 +1,32 @@
+const { PrismaClient } = require('@prisma/client')
+const cloudinary = require('cloudinary').v2
+
+const prisma = new PrismaClient()
+const { v4: uuidv4 } = require('uuid')
+
+const createNewBrand = async (req, res) => {
+  const { name } = req.body
+  const { description } = req.body
+  const logoUrl = req.file.path
+  const id = uuidv4()
+
+  try {
+    const result = await cloudinary.uploader.upload(logoUrl)
+
+    const brand = await prisma.brands.create({
+      data: {
+        name,
+        id,
+        description,
+        logo_url: result.secure_url,
+      },
+    })
+
+    res.status(201).json({ success: true, brand })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ success: false, error: 'Error creating the brand.' })
+  }
+}
+
+module.exports = createNewBrand
