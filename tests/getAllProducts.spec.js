@@ -1,4 +1,4 @@
-const getAllProducts = require('../apiServices/getAllProducts/getAllProducts')
+const {getAllProducts} = require('../apiServices/getAllProducts/getAllProducts')
 const prisma = require('../prisma')
 
 describe('getAllProducts', () => {

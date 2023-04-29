@@ -11,4 +11,4 @@ async function getAllProducts(req, res) {
   }
 }
 
-module.exports = getAllProducts
+module.exports = {getAllProducts}

@@ -2,13 +2,12 @@ const { PrismaClient } = require('@prisma/client')
 const cloudinary = require('cloudinary').v2
 
 const prisma = new PrismaClient()
-const { v4: uuidv4 } = require('uuid')
 
 const createNewBrand = async (req, res) => {
   const { name } = req.body
   const { description } = req.body
   const logoUrl = req.file.path
-  const id = uuidv4()
+  const {id} = req.body
 
   try {
     const result = await cloudinary.uploader.upload(logoUrl)
