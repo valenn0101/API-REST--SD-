@@ -2,10 +2,9 @@ const express = require('express')
 const app = express()
 const routes = require('./v1/routes/crudRoutes')
 
-app 
+app
   .use(express.json())
   .use(express.urlencoded({ extended: true }))
-  .use('api/v1/crud/', routes)
-
+  .use('/api/v1/crud', routes)
 
 module.exports = app

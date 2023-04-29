@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model brands {
+  id       Int     @id
+  name     String? @db.VarChar(255)
+  logo_url String? @db.VarChar(255)
+}
+
+model products {
+  id                 Int      @id
+  name               String?  @db.VarChar(255)
+  description        String?  @db.Text
+  image_url          String?  @db.VarChar(255)
+  price              Decimal? @db.Decimal(10, 2)
+  discounted         Boolean?
+  discountPercentage Decimal? @db.Decimal(5, 2)
+  stock              Int?
+}
