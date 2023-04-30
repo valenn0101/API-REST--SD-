@@ -1,6 +1,6 @@
 const { PrismaClient } = require('@prisma/client')
 const cloudinary = require('cloudinary').v2
-
+const logger = require('../../config/logger')
 const prisma = new PrismaClient()
 
 const updateOneBrand = async (req, res) => {
@@ -14,6 +14,7 @@ const updateOneBrand = async (req, res) => {
     })
       
     if (!existingBrand) {
+      logger.error('Brand not found')
       return res.status(404).json({ error: 'Brand not found' })
     }    
   
@@ -34,7 +35,7 @@ const updateOneBrand = async (req, res) => {
   
     res.status(200).json(updatedBrand)
   } catch (error) {
-    console.error(error)
+    logger.error(error)
     res.status(500).json({ error: 'Failed to update brand' })
   }
 }

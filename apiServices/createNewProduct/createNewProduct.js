@@ -1,6 +1,6 @@
 const { PrismaClient } = require('@prisma/client')
 const cloudinary = require('cloudinary').v2
-
+const logger = require('../../config/logger')
 const prisma = new PrismaClient()
 const {v4: uuidv4} = require('uuid')
 
@@ -36,7 +36,7 @@ const createNewProduct = async (req, res) => {
 
     res.status(201).json({ success: true, product })
   } catch (error) {
-    console.error(error)
+    logger.error(error + ' Error creating the product')
     res.status(500).json({ success: false, error: 'Error creating the product.' })
   }
 }

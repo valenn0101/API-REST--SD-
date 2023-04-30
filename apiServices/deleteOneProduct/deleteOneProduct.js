@@ -1,5 +1,5 @@
 const { PrismaClient } = require('@prisma/client')
-
+const logger = require('../../config/logger')
 const prisma = new PrismaClient()
 
 const deleteOneProduct = async (req, res) => {
@@ -14,7 +14,7 @@ const deleteOneProduct = async (req, res) => {
 
     res.status(200).json(deletedProduct).send('Deleted')
   } catch (error) {
-    console.error(error)
+    logger.error(error + 'Failed to delete product')
     res.status(500).json({ error: 'Failed to delete product' })
   }
 }
