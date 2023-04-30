@@ -1,5 +1,6 @@
 const express = require('express')
-const {getAllProducts} = require('../../apiServices/getAllProducts/getAllProducts')
+const getAllProducts = require('../../apiServices/getAllProducts/getAllProducts')
+const getAllBrands = require('../../apiServices/getAllBrands/getAllBrands')
 const getOneProduct = require('../../apiServices/getOneProduct/getOneProduct')
 const getOneBrand = require('../../apiServices/getOneBrand/getOneBrand')
 const createNewProduct = require('../../apiServices/createNewProduct/createNewProduct')
@@ -13,6 +14,7 @@ const router = express.Router()
 
 router 
   .get('/', getAllProducts)
+  .get('/brands', getAllBrands)
   .get('/info/:productID', getOneProduct)
   .get('/infoBrand/:brandID', getOneBrand)
   .post('/createProduct', upload.single('image_url'), createNewProduct)
