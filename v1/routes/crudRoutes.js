@@ -8,7 +8,8 @@ const createNewProduct = require('../../apiServices/createNewProduct/createNewPr
 const createNewBrand = require('../../apiServices/createNewBrand/createNewBrand')
 const updateOneProduct = require('../../apiServices/editOneProduct/editOneProduct')
 const editOneBrand = require('../../apiServices/editOneBrand/editOneBrand')
-const {deleteOneProduct} = require('../../apiServices/deleteOneProduct/deleteOneProduct')
+const deleteOneProduct = require('../../apiServices/deleteOneProduct/deleteOneProduct')
+const deleteOneBrand = require('../../apiServices/deleteOneBrand/deleteOneBrand')
 
 const upload = require('../../config/multer')
 
@@ -33,6 +34,6 @@ router
 
   .delete('/deleteProduct/:productID', deleteOneProduct)
 
-  .delete('/deleteBrand/:brandID', deleteOneProduct)
+  .delete('/deleteBrand/:brandID', deleteOneBrand)
 
 module.exports = router
