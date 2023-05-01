@@ -9,6 +9,12 @@ const createNewBrand = async (req, res) => {
   const logoUrl = req.file.path
   const {id} = req.body
 
+  const sessionId = req.cookies.sessionId 
+
+  if (!sessionId) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
+  
   try {
     const result = await cloudinary.uploader.upload(logoUrl)
 

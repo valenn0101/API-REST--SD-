@@ -5,6 +5,12 @@ const prisma = new PrismaClient()
 const deleteOneBrand = async (req, res) => {
   const brandId = req.params.brandID
 
+  const sessionId = req.cookies.sessionId 
+
+  if (!sessionId) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
+
   try {
     const deletedBrand = await prisma.brands.delete({
       where: {

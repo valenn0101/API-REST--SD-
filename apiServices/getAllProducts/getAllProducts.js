@@ -2,7 +2,6 @@ const prisma = require('../../config/prisma')
 const logger = require('../../config/logger')
 
 async function getAllProducts(req, res) {
-  console.log(req.cookies)
   try {
     const products = await prisma.products.findMany()
     res.status(200).json({ products: [...products], message: 'These are the products' })

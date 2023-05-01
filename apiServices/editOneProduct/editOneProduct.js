@@ -6,6 +6,12 @@ const prisma = new PrismaClient()
 const updateOneProduct = async (req, res)=>{
   const productId = req.params.productID
 
+  const sessionId = req.cookies.sessionId 
+
+  if (!sessionId) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
+
   try{
     const existingProduct = await prisma.products.findUnique({
       where: {

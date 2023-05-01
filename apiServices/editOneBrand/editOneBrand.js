@@ -5,6 +5,12 @@ const prisma = new PrismaClient()
 
 const updateOneBrand = async (req, res) => {
   const brandId = req.params.brandID
+
+  const sessionId = req.cookies.sessionId 
+
+  if (!sessionId) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
   
   try {
     const existingBrand = await prisma.brands.findUnique({

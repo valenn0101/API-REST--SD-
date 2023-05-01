@@ -10,12 +10,15 @@ const updateOneProduct = require('../../apiServices/editOneProduct/editOneProduc
 const editOneBrand = require('../../apiServices/editOneBrand/editOneBrand')
 const deleteOneProduct = require('../../apiServices/deleteOneProduct/deleteOneProduct')
 const deleteOneBrand = require('../../apiServices/deleteOneBrand/deleteOneBrand')
+const authenticateUser = require('../../apiServices/authUser/authUser')
 
 const upload = require('../../config/multer')
 
 const router = express.Router()
 
 router 
+  .post('/auth', authenticateUser)
+
   .get('/', getAllProducts)
 
   .get('/brands', getAllBrands)

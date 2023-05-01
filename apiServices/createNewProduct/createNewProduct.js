@@ -14,6 +14,12 @@ const createNewProduct = async (req, res) => {
   const stockValue = parseInt(stock)
   const descriptionValue = req.body.description ? req.body.description : null
 
+  const sessionId = req.cookies.sessionId 
+
+  if (!sessionId) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
+
   try {
     const result = await cloudinary.uploader.upload(imageUrl)
 
