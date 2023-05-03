@@ -2,7 +2,6 @@ const {v4: uuidv4} = require('uuid')
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
-
 const sessions = []
 
 const authenticateUser = async (req, res) => {
@@ -32,8 +31,6 @@ const authenticateUser = async (req, res) => {
     const sessionId = uuidv4()
     sessions.push({ sessionId })
 
-    localStorage.setItem('sessionId', sessionId)
-  
     res.cookie('sessionId', sessionId, {
       httpOnly: true,
     })
