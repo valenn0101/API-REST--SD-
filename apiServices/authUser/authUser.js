@@ -30,15 +30,16 @@ const authenticateUser = async (req, res) => {
     }
 
     const sessionId = uuidv4()
-    sessions.push({sessionId})
+    sessions.push({ sessionId })
 
+    localStorage.setItem('sessionId', sessionId)
+  
     res.cookie('sessionId', sessionId, {
       httpOnly: true,
-        
     })
   
     console.log('Authentication successful')
-    res.status(200).redirect('/api/v1/crud')
+    res.status(200).json({ message: 'Authentication successful', sessionId })
   
   } catch (error) {
     console.error('Error while authenticating user:', error)
