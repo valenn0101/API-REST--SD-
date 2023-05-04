@@ -8,10 +8,10 @@ const getOneBrand = async (req, res) => {
   try {
     const brand = await prisma.brands.findUnique({
       where: {
-        id:brandID,
+        id: parseInt(brandID),
       },
     })
-
+    
     if (!brand) {
       logger.error('Brand not found')
       return res.status(404).json({ error: 'Brand not found' })
