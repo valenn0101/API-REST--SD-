@@ -7,7 +7,6 @@ const createNewBrand = async (req, res) => {
   const { name } = req.body
   const { description } = req.body
   const logoUrl = req.file.path
-  const {id} = req.body
 
   const sessionId = req.cookies.sessionId 
 
@@ -21,7 +20,6 @@ const createNewBrand = async (req, res) => {
     const brand = await prisma.brands.create({
       data: {
         name,
-        id,
         description,
         logo_url: result.secure_url,
       },
