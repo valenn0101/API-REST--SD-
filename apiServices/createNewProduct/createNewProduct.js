@@ -14,7 +14,7 @@ const createNewProduct = async (req, res) => {
   const stockValue = parseInt(stock)
   const descriptionValue = req.body.description ? req.body.description : null
 
-  const sessionId = req.cookies.sessionId 
+  const sessionId = req.headers['x-session-id']
 
   if (!sessionId) {
     return res.status(401).json({ error: 'Unauthorized' })

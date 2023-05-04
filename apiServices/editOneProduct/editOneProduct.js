@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 const updateOneProduct = async (req, res)=>{
   const productId = req.params.productID
 
-  const sessionId = req.cookies.sessionId 
+  const sessionId = req.headers['x-session-id']
 
   if (!sessionId) {
     return res.status(401).json({ error: 'Unauthorized' })

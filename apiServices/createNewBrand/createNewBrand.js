@@ -8,7 +8,7 @@ const createNewBrand = async (req, res) => {
   const { description } = req.body
   const logoUrl = req.file.path
 
-  const sessionId = req.cookies.sessionId 
+  const sessionId = req.headers['x-session-id']
 
   if (!sessionId) {
     return res.status(401).json({ error: 'Unauthorized' })
