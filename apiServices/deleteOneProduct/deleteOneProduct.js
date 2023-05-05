@@ -20,6 +20,7 @@ const deleteOneProduct = async (req, res) => {
 
     res.status(200).json(deletedProduct).send('Deleted')
   } catch (error) {
+    console.log(error)
     logger.error(error + 'Failed to delete product')
     res.status(500).json({ error: 'Failed to delete product' })
   }

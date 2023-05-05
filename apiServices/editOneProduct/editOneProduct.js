@@ -46,8 +46,9 @@ const updateOneProduct = async (req, res) => {
 
     res.status(200).json(updatedProduct)
   } catch (error) {
+    console.log(error)
     logger.log(error)
-    res.status(500).json({ error: 'Something went wrong' })
+    res.status(500).json({ error: 'Something went wrong'})
   }
 }
 

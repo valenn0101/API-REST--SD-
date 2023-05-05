@@ -14,22 +14,22 @@ model products {
   description        String?  @db.Text
   image_url          String?  @db.VarChar(255)
   price              Decimal? @db.Decimal(10, 2)
-  discounted         Boolean?
+  discounted         Boolean? @default(false)
   discountPercentage Decimal? @db.Decimal(5, 2)
   stock              Int?
-  brandName          String?  @db.VarChar(255)
-  brand              brands?  @relation(fields: [brandName], references: [name])
-
+  brandName          Int?     @db.Int
+  brand              brands?  @relation(fields: [brandName], references: [id])
   @@index([brandName], map: "brandName")
 }
 
 model brands {
-  id    Int     @id @default(autoincrement())
-  name  String  @unique
-  logo_url    String?    @db.VarChar(255)
-  description String?    @db.Text
-  products products[]
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  logo_url    String?   @db.VarChar(255)
+  description String?   @db.Text
+  products    products[]
 }
+
 
 
 model users {
