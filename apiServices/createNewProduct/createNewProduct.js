@@ -22,10 +22,12 @@ const createNewProduct = async (req, res) => {
         discounted: discounted === 'true' ? true : false,
         discountPercentage: parseFloat(discountPercentage),
         stock: parseInt(stock),
-        brandId: brandName,
+        brand: {
+          connect: { name: brandName }
+        }
       },
       include: {
-        brand: true,
+        brand: true
       },
     })
 
