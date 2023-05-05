@@ -2,17 +2,12 @@ const { PrismaClient } = require('@prisma/client')
 const cloudinary = require('cloudinary').v2
 const logger = require('../../config/logger')
 const prisma = new PrismaClient()
-const {v4: uuidv4} = require('uuid')
-
+const { v4: uuidv4 } = require('uuid')
 
 const createNewProduct = async (req, res) => {
-  const { name, description, price, discounted, discountPercentage, stock, brandId} = req.body
+  const { name, description, price, discounted, discountPercentage, stock, brandId } = req.body
   const id = uuidv4()
   const imageUrl = req.file.path
-
-  const discountedValue = Boolean(discounted)
-  const stockValue = parseInt(stock)
-  const descriptionValue = req.body.description ? req.body.description : null
 
   const sessionId = req.headers['x-session-id']
 
@@ -25,15 +20,15 @@ const createNewProduct = async (req, res) => {
 
     const product = await prisma.products.create({
       data: {
-        name,
-        description: descriptionValue,
         id,
-        price: parseFloat(price),
-        discounted: discountedValue,
-        discountPercentage: parseFloat(discountPercentage),
-        stock: stockValue,
-        brandId,
+        name,
+        description,
         image_url: result.secure_url,
+        price: parseFloat(price),
+        discounted,
+        discountPercentage: parseFloat(discountPercentage),
+        stock: parseInt(stock),
+        brandId: parseInt(brandId),
       },
       include: {
         brand: true,
