@@ -25,12 +25,10 @@ const createNewProduct = async (req, res) => {
         description,
         image_url: result.secure_url,
         price: parseFloat(price),
-        discounted,
+        discounted: discounted === 'true' ? true : false,
         discountPercentage: parseFloat(discountPercentage),
         stock: parseInt(stock),
-        brand: {
-          connect: { name: brandName }
-        },
+        brandId: brandName,
       },
       include: {
         brand: true,
