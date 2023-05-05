@@ -24,7 +24,7 @@ const updateOneProduct = async (req, res) => {
       return res.status(404).json({ message: 'Product not found' })
     }
 
-    const { name, description, discounted, discountPercentage, stock, brandName, price } = req.body
+    const { name, description, discounted, discountPercentage, stock, brand, price } = req.body
     const imageUrl = req.file.path
     const result = await cloudinary.uploader.upload(imageUrl)
 
@@ -39,7 +39,7 @@ const updateOneProduct = async (req, res) => {
         discounted,
         discountPercentage: parseFloat(discountPercentage),
         stock: parseInt(stock),
-        brandName,
+        brand,
         image_url: result.secure_url,
       },
     })
@@ -48,7 +48,7 @@ const updateOneProduct = async (req, res) => {
   } catch (error) {
     console.log(error)
     logger.log(error)
-    res.status(500).json({ error: 'Something went wrong'})
+    res.status(500).json({ error: 'Something went wrong' })
   }
 }
 
