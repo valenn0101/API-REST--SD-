@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 const { v4: uuidv4 } = require('uuid')
 
 const createNewProduct = async (req, res) => {
-  const { name, description, price, discounted, discountPercentage, stock, brandId } = req.body
+  const { name, description, price, discounted, discountPercentage, stock, brandName } = req.body
   const id = uuidv4()
   const imageUrl = req.file.path
 
@@ -28,7 +28,9 @@ const createNewProduct = async (req, res) => {
         discounted,
         discountPercentage: parseFloat(discountPercentage),
         stock: parseInt(stock),
-        brandId: parseInt(brandId),
+        brand: {
+          connect: { name: brandName }
+        },
       },
       include: {
         brand: true,
