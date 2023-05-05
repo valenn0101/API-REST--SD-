@@ -17,7 +17,7 @@ model products {
   discounted         Boolean? @default(false)
   discountPercentage Decimal? @db.Decimal(5, 2)
   stock              Int?
-  brandName          String?  @db.VarChar(255)
+  brandName          String?  @db.VarChar(36)
   brand              brands?  @relation(fields: [brandName], references: [name])
   @@index([brandName], map: "brandName")
 }
@@ -29,6 +29,7 @@ model brands {
   description String?   @db.Text
   products    products[]
 }
+
 
 
 

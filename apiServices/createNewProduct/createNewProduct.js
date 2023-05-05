@@ -9,12 +9,6 @@ const createNewProduct = async (req, res) => {
   const id = uuidv4()
   const imageUrl = req.file.path
 
-  const sessionId = req.headers['x-session-id']
-
-  if (!sessionId) {
-    return res.status(401).json({ error: 'Unauthorized' })
-  }
-
   try {
     const result = await cloudinary.uploader.upload(imageUrl)
 
