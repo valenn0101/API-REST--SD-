@@ -11,13 +11,13 @@ app
     logger.error(err.stack)
     res.status(500).send('Ha ocurrido un error.')
   })
-  .use(cors({ origin: 'http://localhost:3000', credentials: true }))
+  .use(cors({ origin: '*', credentials: true }))
   .use(cookieParser())
   .use(express.json())
   .use(bodyParser.json())
   .use(express.urlencoded({ extended: true }))
   .use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+    res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Set-Cookie')
     res.header('Access-Control-Allow-Credentials', 'true')
@@ -26,3 +26,4 @@ app
   .use('/api/v1/crud', routes)
 
 module.exports = app
+
